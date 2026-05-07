@@ -2,16 +2,60 @@
 
 import { useInView } from 'react-intersection-observer';
 import { Camera } from 'lucide-react';
+import Image from 'next/image';
 
+// These use Unsplash food photography as live placeholders.
+// To use your Kaggle dataset images instead, replace each `src` with
+// the local path, e.g. "/images/kaggle/filename.jpg"
 const galleryItems = [
-  { emoji: '🥔', title: 'Loaded Baked Potato', subtitle: 'Signature item', bg: 'linear-gradient(135deg, #5a2800, #C4572A)', tall: true },
-  { emoji: '☕', title: 'Artisan Latte', subtitle: 'House roast', bg: 'linear-gradient(135deg, #3D1C02, #7a3a10)', tall: false },
-  { emoji: '🥪', title: 'Italian Sub', subtitle: 'Freshly made', bg: 'linear-gradient(135deg, #1a4a20, #2d7a35)', tall: false },
-  { emoji: '🥐', title: 'Cheese Puff', subtitle: 'Daily baked', bg: 'linear-gradient(135deg, #8B1A1A, #C4572A)', tall: true },
-  { emoji: '🍵', title: 'Matcha Latte', subtitle: 'Ceremonial grade', bg: 'linear-gradient(135deg, #1a4a20, #4a8a50)', tall: false },
-  { emoji: '🍓', title: 'Fresh Smoothie', subtitle: 'Blended daily', bg: 'linear-gradient(135deg, #7a1a3a, #C4572A)', tall: false },
-  { emoji: '🧁', title: 'Blueberry Muffin', subtitle: 'House recipe', bg: 'linear-gradient(135deg, #2a1a6a, #4a3aaa)', tall: false },
-  { emoji: '🥗', title: 'Fresh Salads', subtitle: 'House-made', bg: 'linear-gradient(135deg, #1a4a20, #3D7A25)', tall: true },
+  {
+    src: 'https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=600&q=80&fit=crop',
+    title: 'Loaded Baked Potato',
+    subtitle: 'Signature item',
+    tall: true,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80&fit=crop',
+    title: 'Artisan Latte',
+    subtitle: 'House roast',
+    tall: false,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=600&q=80&fit=crop',
+    title: 'Italian Sub',
+    subtitle: 'Freshly made',
+    tall: false,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1549903072-7e6e0bedb7fb?w=600&q=80&fit=crop',
+    title: 'Cheese Puff',
+    subtitle: 'Daily baked',
+    tall: true,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=600&q=80&fit=crop',
+    title: 'Matcha Latte',
+    subtitle: 'Ceremonial grade',
+    tall: false,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=600&q=80&fit=crop',
+    title: 'Fresh Smoothie',
+    subtitle: 'Blended daily',
+    tall: false,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=600&q=80&fit=crop',
+    title: 'Blueberry Muffin',
+    subtitle: 'House recipe',
+    tall: false,
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80&fit=crop',
+    title: 'Fresh Salads',
+    subtitle: 'House-made',
+    tall: true,
+  },
 ];
 
 export default function Gallery() {
@@ -54,44 +98,32 @@ export default function Gallery() {
           {galleryItems.map((item, i) => (
             <div
               key={i}
-              className={`masonry-item instagram-item rounded-sm cursor-pointer transition-all duration-500 ${
+              className={`masonry-item group instagram-item rounded-sm cursor-pointer transition-all duration-500 ${
                 inView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               <div
-                className={`relative ${item.tall ? 'aspect-[3/4]' : 'aspect-square'} rounded-sm overflow-hidden`}
-                style={{ background: item.bg }}
+                className={`relative ${item.tall ? 'aspect-[3/4]' : 'aspect-square'} rounded-sm overflow-hidden bg-[#2a1200]`}
               >
-                {/* Content */}
-                <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                  <span style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}>{item.emoji}</span>
-                  <div className="text-center px-3">
-                    <p className="text-[#F5ECD7] text-sm font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>
-                      {item.title}
-                    </p>
-                    <p className="text-[#F5ECD7]/50 text-xs mt-0.5" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      {item.subtitle}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Hover overlay content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Camera size={24} className="text-[#F5ECD7]" />
-                  <span className="text-[#F5ECD7] text-xs mt-2 uppercase tracking-wider"
-                    style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    View
-                  </span>
-                </div>
-
-                {/* Grain overlay */}
-                <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-                    backgroundSize: '100px 100px',
-                  }}
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  style={{ objectFit: 'cover' }}
+                  className="transition-transform duration-700 group-hover:scale-110"
                 />
+
+                {/* Overlay with title */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3D1C02]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 z-10">
+                  <p className="text-[#F5ECD7] text-sm font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    {item.title}
+                  </p>
+                  <p className="text-[#D4A017] text-xs mt-0.5" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                    {item.subtitle}
+                  </p>
+                </div>
               </div>
             </div>
           ))}

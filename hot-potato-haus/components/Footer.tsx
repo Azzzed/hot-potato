@@ -12,9 +12,18 @@ const navLinks = [
 ];
 
 const deliveryLinks = [
-  { label: 'DoorDash', href: 'https://www.doordash.com' },
-  { label: 'Uber Eats', href: 'https://www.ubereats.com' },
-  { label: 'Postmates', href: 'https://postmates.com' },
+  {
+    label: 'DoorDash',
+    href: 'https://www.doordash.com/store/hot-potato-haus-and-cafe-los-angeles-38723189/89820548/?utm_source=ig&utm_medium=social&utm_content=link_in_bio',
+  },
+  {
+    label: 'Uber Eats',
+    href: 'https://www.ubereats.com/store/hot-potato-haus-and-cafe-los-angeles-231-e-12th-st/iLnTjCAiWs-sNFCtATTOow?utm_source=ig&utm_medium=social&utm_content=link_in_bio',
+  },
+  {
+    label: 'Grubhub',
+    href: 'https://www.grubhub.com/restaurant/hot-potato-haus-and-cafe-231-east-12th-street-los-angeles/13648320?utm_source=ig&utm_medium=social&utm_content=link_in_bio',
+  },
 ];
 
 export default function Footer() {
@@ -175,7 +184,7 @@ export default function Footer() {
           <div className="border-t border-[#F5ECD7]/8 pt-8 mb-6">
             <p className="text-[#F5ECD7]/20 text-xs leading-relaxed text-center max-w-4xl mx-auto"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}>
-              Hot Potato Haus & Cafe — the best baked potato restaurant in Los Angeles. Serving Downtown LA's finest comfort food cafe with specialty baked potatoes, artisan coffee, matcha, fresh pastries, and handcrafted smoothies. Located at 231 E 12th St, Los Angeles, CA 90015. Available on DoorDash, Uber Eats, and Postmates for delivery across Los Angeles.
+              Hot Potato Haus & Cafe — the best baked potato restaurant in Los Angeles. Serving Downtown LA's finest comfort food cafe with specialty baked potatoes, artisan coffee, matcha, fresh pastries, and handcrafted smoothies. Located at 231 E 12th St, Los Angeles, CA 90015. Available on DoorDash, Uber Eats, and Grubhub for delivery across Los Angeles.
             </p>
           </div>
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Phone } from 'lucide-react';
 
 const navLinks = [
@@ -16,6 +17,7 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 60);
@@ -36,8 +38,19 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-full bg-[#C4572A] flex items-center justify-center overflow-hidden border-2 border-[#D4A017]/40">
-                <span className="text-[#F5ECD7] font-bold text-sm" style={{ fontFamily: 'serif' }}>HP</span>
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#D4A017]/40 flex items-center justify-center bg-[#C4572A]">
+                {!logoError ? (
+                  <Image
+                    src="/logo.jpg"
+                    alt="Hot Potato Haus & Cafe"
+                    width={40}
+                    height={40}
+                    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                    onError={() => setLogoError(true)}
+                  />
+                ) : (
+                  <span className="text-[#F5ECD7] font-bold text-sm" style={{ fontFamily: 'serif' }}>HP</span>
+                )}
               </div>
               <div className="hidden sm:block">
                 <div className="text-[#F5ECD7] font-serif text-base font-700 leading-tight tracking-wide" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700 }}>
@@ -99,6 +112,24 @@ export default function Navbar() {
         }`}
       >
         <div className="flex flex-col items-center justify-center h-full gap-8 pt-16">
+          {/* Mobile logo */}
+          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#D4A017]/40 mb-2">
+            {!logoError ? (
+              <Image
+                src="/logo.jpg"
+                alt="Hot Potato Haus"
+                width={80}
+                height={80}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                onError={() => setLogoError(true)}
+              />
+            ) : (
+              <div className="w-full h-full bg-[#C4572A] flex items-center justify-center">
+                <span className="text-[#F5ECD7] font-bold text-2xl" style={{ fontFamily: 'serif' }}>HP</span>
+              </div>
+            )}
+          </div>
+
           {navLinks.map((link, i) => (
             <a
               key={link.label}

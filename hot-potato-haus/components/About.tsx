@@ -1,6 +1,7 @@
 'use client';
 
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 
 const stats = [
   { value: '5.0★', label: 'Google Rating' },
@@ -53,30 +54,27 @@ export default function About() {
 
           {/* Left: visual block */}
           <div className={`relative transition-all duration-1000 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-            {/* Main image frame */}
             <div className="relative">
-              <div
-                className="w-full aspect-[4/5] rounded-sm overflow-hidden"
-                style={{ background: 'linear-gradient(135deg, #3D1C02 0%, #C4572A 50%, #D4A017 100%)' }}
-              >
-                {/* Placeholder styled as food image */}
-                <div className="w-full h-full flex flex-col items-center justify-center gap-6 p-8">
-                  <div className="text-8xl opacity-80">🥔</div>
-                  <div className="text-center">
-                    <p className="text-[#F5ECD7] font-serif text-2xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
-                      Made with Love
-                    </p>
-                    <p className="text-[#F5ECD7]/60 text-sm mt-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                      Every bite crafted to perfection
-                    </p>
-                  </div>
-                </div>
-                {/* Overlay pattern */}
-                <div className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(245,236,215,0.3) 10px, rgba(245,236,215,0.3) 11px)`,
-                  }}
+              {/* Main food image */}
+              <div className="w-full aspect-[4/5] rounded-sm overflow-hidden bg-[#3D1C02] relative">
+                <Image
+                  src="https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=800&q=85&fit=crop"
+                  alt="Hot Potato Haus signature loaded baked potato"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  style={{ objectFit: 'cover' }}
+                  priority
                 />
+                {/* Warm color overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3D1C02]/60 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <p className="text-[#F5ECD7] font-serif text-xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    Made with Love
+                  </p>
+                  <p className="text-[#D4A017] text-sm mt-1" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                    Every bite crafted to perfection
+                  </p>
+                </div>
               </div>
 
               {/* Floating accent card */}
@@ -90,6 +88,16 @@ export default function About() {
                 <div className="text-[#F5ECD7]/60 text-xs mt-2" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                   Google Rating
                 </div>
+              </div>
+
+              {/* Secondary food image thumbnail */}
+              <div className="absolute -top-4 -right-4 w-28 h-28 rounded-sm overflow-hidden border-4 border-[#F5ECD7] shadow-xl hidden lg:block">
+                <Image
+                  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=200&q=80&fit=crop"
+                  alt="Artisan coffee"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
 
               {/* Decorative border */}

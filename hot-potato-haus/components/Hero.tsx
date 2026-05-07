@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Star } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
-  const videoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 100);
@@ -18,21 +18,25 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Hot Potato Haus & Cafe — Premium Baked Potatoes in Los Angeles"
     >
-      {/* Background: deep rich warm overlay */}
+      {/* Background: real food photography */}
       <div className="absolute inset-0 z-0">
-        {/* Cinematic background with gradient layers */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(135deg, #1a0a00 0%, #3D1C02 40%, #5a2800 70%, #2a1200 100%)',
-          }}
+        <Image
+          src="https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=1920&q=85&fit=crop"
+          alt="Hot Potato Haus signature baked potato"
+          fill
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
-        {/* Warm texture overlay */}
+        {/* Dark cinematic overlay */}
+        <div className="absolute inset-0" style={{
+          background: 'linear-gradient(135deg, rgba(26,10,0,0.85) 0%, rgba(61,28,2,0.80) 40%, rgba(90,40,0,0.75) 70%, rgba(42,18,0,0.88) 100%)',
+        }} />
+        {/* Warm color tint */}
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `radial-gradient(ellipse at 20% 50%, rgba(196,87,42,0.6) 0%, transparent 60%),
-                              radial-gradient(ellipse at 80% 20%, rgba(212,160,23,0.4) 0%, transparent 50%),
+            backgroundImage: `radial-gradient(ellipse at 20% 50%, rgba(196,87,42,0.5) 0%, transparent 60%),
+                              radial-gradient(ellipse at 80% 20%, rgba(212,160,23,0.35) 0%, transparent 50%),
                               radial-gradient(ellipse at 50% 100%, rgba(61,28,2,0.8) 0%, transparent 60%)`,
           }}
         />
